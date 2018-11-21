@@ -12,8 +12,8 @@ class PromoRegistrar < BaseApiClient
     channels.each do |channel|
       if should_register_channel?(channel)
         result = register_channel(channel)
-        referral_code = result[:referral_code]
-        should_update_promo_server = result[:should_update_promo_server]
+        referral_code = result.try(:referral_code)
+        should_update_promo_server = result.try(:should_update_promo_server)
         if referral_code.present?
           promo_registration = PromoRegistration.new(channel_id: channel.id,
                                                      promo_id: @promo_id,
@@ -43,9 +43,9 @@ class PromoRegistrar < BaseApiClient
       should_update_promo_server: false
     }
   rescue Faraday::Error => e
-    if e.response[:status] == 409
+    if e.response.try(:status) == 409
       Rails.logger.warn("PromoRegistrar #register_channel returned 409, channel already registered.  Using PromoRegistrationGetter to get the referral_code.")
-      
+
       # Get the referral code
       registration = PromoRegistrationGetter.new(publisher: @publisher, channel: channel).perform
 
@@ -98,7 +98,7 @@ class PromoRegistrar < BaseApiClient
     {
       "owner_id": @publisher.id,
       "promo": @promo_id,
-      "channel": channel.channel_id, 
+      "channel": channel.channel_id,
       "title": channel.publication_title,
       "channel_type": "youtube",
       "thumbnail_url": channel.details.thumbnail_url,
@@ -110,7 +110,7 @@ class PromoRegistrar < BaseApiClient
     {
       "owner_id": @publisher.id,
       "promo": @promo_id,
-      "channel": channel.channel_id, 
+      "channel": channel.channel_id,
       "title": channel.publication_title,
       "channel_type": "twitch",
       "thumbnail_url": channel.details.thumbnail_url,
@@ -122,7 +122,7 @@ class PromoRegistrar < BaseApiClient
     {
       "owner_id": @publisher.id,
       "promo": @promo_id,
-      "channel": channel.channel_id, 
+      "channel": channel.channel_id,
       "title": channel.publication_title,
       "channel_type": "twitter",
       "thumbnail_url": channel.details.thumbnail_url,
@@ -134,7 +134,7 @@ class PromoRegistrar < BaseApiClient
     {
       "owner_id": @publisher.id,
       "promo": @promo_id,
-      "channel": channel.channel_id, 
+      "channel": channel.channel_id,
       "title": channel.publication_title,
       "channel_type": "website",
     }.to_json

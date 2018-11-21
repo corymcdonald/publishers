@@ -40,7 +40,7 @@ class PromoRegistrationsController < ApplicationController
       render(:index)
     end
   end
-  
+
   def find_publisher
     if current_publisher
       @publisher = current_publisher
