@@ -100,50 +100,7 @@ class Publishers::SiteBannersController < ApplicationController
     attachment.attach(
       io: open(padded_resized_jpg_path),
       filename: new_filename + ".jpg",
-      content_type: "image/jpg",
-      service: PrivateS3Service.new
+      content_type: "image/jpg"
     )
   end
 end
-
-# module ActiveStorage
-#   class Service::S3Service
-#     private
-
-#     def object_for(key)
-#       require 'pry'
-#       binding.pry
-#       bucket.object(key)
-#     end
-#   end
-# end
-
-# class ActiveStorage::Blob
-#   alias_method :old_service, :service
-
-#   class << self
-#     # Returns a new, unsaved blob instance after the +io+ has been uploaded to the service.
-#     def build_after_upload(io:, filename:, content_type: nil, metadata: nil, service: nil)
-#       new.tap do |blob|
-#         blob.filename     = filename
-#         blob.content_type = content_type
-#         blob.metadata     = metadata
-#         blob.service      = service
-
-#         blob.upload io
-#       end
-#     end
-
-#       # Returns a saved blob instance after the +io+ has been uploaded to the service. Note, the blob is first built,
-#     # then the +io+ is uploaded, then the blob is saved. This is done this way to avoid uploading (which may take
-#     # time), while having an open database transaction.
-#     def create_after_upload!(io:, filename:, content_type: nil, metadata: nil, service: nil)
-#       build_after_upload(io: io, filename: filename, content_type: content_type, metadata: metadata, service: service).tap(&:save!)
-#     end
-#   end
-
-#   def service
-#     binding.pry
-#     old_service
-#   end
-# end
