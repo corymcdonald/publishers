@@ -1,11 +1,11 @@
 module TwoFactorAuth
   extend ActiveSupport::Concern
 
-  included do
-    include PublishersHelper
+  # included do
+  #   include PublishersHelper
 
-    before_action :require_pending_2fa_current_publisher
-  end
+  #   before_action :require_pending_2fa_current_publisher
+  # end
 
   private
 

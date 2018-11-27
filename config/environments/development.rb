@@ -21,7 +21,7 @@ Rails.application.configure do
   config.middleware.use(Rack::Attack)
 
   # Do not eager load code on boot.
-  config.eager_load = false
+  config.eager_load = true
 
   # Show full error reports.
   config.consider_all_requests_local = true
@@ -52,7 +52,7 @@ Rails.application.configure do
   }
 
   # Use S3 for storage
-  config.active_storage.service = :local
+  config.active_storage.service = :amazon
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
