@@ -3,9 +3,11 @@ require 'json'
 
 class SiteBanner < ApplicationRecord
   include Rails.application.routes.url_helpers
-  has_one_attached :logo
+  include PublicS3
 
-  has_one_attached :background_image
+  has_one_public_s3 :logo
+
+  has_one_public_s3 :background_image
   belongs_to :publisher
 
   LOGO = "logo".freeze

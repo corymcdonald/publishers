@@ -9,7 +9,7 @@ module PublicS3
     # This specifies the relation between a single attachment and the model
     #
     #   class User < ActiveRecord::Base
-    #     has_public_s3 :avatar
+    #     has_one_public_s3 :avatar
     #   end
     #
     # Developers then may call on the object
@@ -32,7 +32,7 @@ module PublicS3
     #
     # Two additional methods are introduced to encourage the developer to be explicit
     # when uploading/downloading files to and from public S3.
-    def self.has_public_s3(name, dependent: :purge_later)
+    def self.has_one_public_s3(name, dependent: :purge_later)
       class_eval <<-CODE, __FILE__, __LINE__ + 1
         def #{name}
           @active_storage_attached_#{name} ||= ActiveStorage::Attached::One.new("#{name}", self, dependent: #{dependent == :purge_later ? ":purge_later" : "false"})
