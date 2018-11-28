@@ -1,4 +1,7 @@
+# Model
+
 class DummyTest < ApplicationRecord
-  include PrivateS3
-  has_private_s3 :invoice
+  include PublicS3
+
+  has_public_s3 :invoice
 end
