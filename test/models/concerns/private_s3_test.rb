@@ -19,9 +19,10 @@ class PrivateS3Test < ActiveSupport::TestCase
     # )
 
 
-    bindingnding.pry
-    @dummy = DummyTest.new.save
-    binding.pry
+    DummyTest.destroy_all
+
+    @dummy = DummyTest.new
+    @dummy.save
 
     @dummy.upload_public_invoice(
       {
@@ -31,20 +32,22 @@ class PrivateS3Test < ActiveSupport::TestCase
       }
     )
 
+    @dummy.public_invoice_url
+
     binding.pry
 
     # TODO figure out how to get a public thing
     # result = @dummy.invoices
 
-    p = @dummy.get_url(
-      key: result.key,
-      filename: "dummy",
-      content_type: "image/jpg"
-    )
+    # p = @dummy.get_url(
+    #   key: result.key,
+    #   filename: "dummy",
+    #   content_type: "image/jpg"
+    # )
 
     # @dummy.service_url(key:'dummy')
-    binding.pry
-    assert result
+    # binding.pry
+
   end
 
 end

@@ -1,5 +1,5 @@
 module Publishers
-  class Service::PrivateS3Service < ActiveStorage::Service::S3Service
+  class Service::PublicS3Service < ActiveStorage::Service::S3Service
     attr_reader :client, :bucket, :upload_options
 
     def initialize

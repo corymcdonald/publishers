@@ -69,6 +69,7 @@ class SiteBanner < ApplicationRecord
   end
 
   def url_for(object)
+    binding.pry
     return nil if object.nil? || object.attachment.nil?
 
     # if Rails.env.development? || Rails.env.test?
