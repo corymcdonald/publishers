@@ -70,9 +70,8 @@ module PublicS3
           end
         end
 
-
         def public_#{name}_url
-          return if #{name}.attachment.blank? 
+          return if #{name}.attachment.blank?
           if Rails.application.config.active_storage.service == :amazon
             #{name}.blob.service = public_s3_service
           end
@@ -85,12 +84,39 @@ module PublicS3
             url += "/" + #{name}.blob.key
           end
         end
+
+        def #{name}_purge_later
+          PublicPurgeJob.perform_later(self, "#{name}")
+        end
+
+        # Deletes from the public_s3_service immediately
+        def #{name}_detach
+          return unless #{name}_attachment.present?
+
+          # Destroy the attachment
+          #{name}_attachment.destroy
+          public_send("#{name}_attachment=", nil)
+
+          # Delete from public s3
+          key = #{name}.blob.key
+          public_s3_service.delete(key)
+          public_s3_service.delete_prefixed("variants/" + key + "/") if image?
+
+          # Destroy the blob
+          #{name}.blob.destroy
+        end
       CODE
 
       has_one :"#{name}_attachment", -> { where(name: name) }, class_name: "ActiveStorage::Attachment", as: :record, inverse_of: :record, dependent: false
       has_one :"#{name}_blob", through: :"#{name}_attachment", class_name: "ActiveStorage::Blob", source: :blob
 
       scope :"with_attached_#{name}", -> { includes("#{name}_attachment": :blob) }
+
+      if dependent == :purge_later
+        after_destroy_commit { public_send("#{name}_purge_later") }
+      else
+        before_destroy { public_send("#{name}_detach") }
+      end
     end
   end
 end
