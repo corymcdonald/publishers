@@ -1,3 +1,5 @@
+require 'active_storage'
+
 module PublicS3
   extend ActiveSupport::Concern
 
@@ -59,6 +61,10 @@ module PublicS3
           blob.save
 
           transaction do
+            if self.public_send("#{name}_attachment").present?
+              self.public_send("#{name}_attachment").destroy
+              self.public_send("#{name}_attachment=", nil)
+            end
             attachment = ActiveStorage::Attachment.new(record: self, name: "#{name}", blob: blob)
             self.public_send("#{name}_attachment=", attachment)
           end
@@ -66,6 +72,12 @@ module PublicS3
 
 
         def public_#{name}_url
+          return if #{name}.attachment.blank? 
+          if Rails.application.config.active_storage.service == :amazon
+            #{name}.blob.service = public_s3_service
+          end
+
+          # ActiveStorage::Current.host = Rails.application.secrets[:s3_rewards_public_domain]
           if Rails.env.development? || Rails.env.test?
             #{name}.service_url
           else
@@ -79,12 +91,6 @@ module PublicS3
       has_one :"#{name}_blob", through: :"#{name}_attachment", class_name: "ActiveStorage::Blob", source: :blob
 
       scope :"with_attached_#{name}", -> { includes("#{name}_attachment": :blob) }
-
-      if dependent == :purge_later
-        after_destroy_commit { public_send(name).purge_later }
-      else
-        before_destroy { public_send(name).detach }
-      end
     end
   end
 end

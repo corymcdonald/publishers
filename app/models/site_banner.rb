@@ -63,22 +63,10 @@ class SiteBanner < ApplicationRecord
     {
       title: self.title,
       description: self.description,
-      backgroundUrl: url_for(self.background_image),
-      logoUrl: url_for(self.logo),
+      backgroundUrl: self.public_background_image_url,
+      logoUrl: self.public_logo_url,
       donationAmounts: self.donation_amounts,
       socialLinks: self.social_links
     }
-  end
-
-  def url_for(object)
-    binding.pry
-    return nil if object.nil? || object.attachment.nil?
-
-    # if Rails.env.development? || Rails.env.test?
-    #   # (Albert Wang): I couldn't figure out how to play nicely with localhost
-    #   "https://0.0.0.0:3000" + rails_blob_path(object, only_path: true)
-    # else
-      "#{Rails.application.secrets[:s3_rewards_public_domain]}/#{object.blob.key}"
-    # end
   end
 end
