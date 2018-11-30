@@ -3,7 +3,6 @@ require 'active_storage/service/s3_service'
 
 class PrivateS3Test < ActiveSupport::TestCase
   setup do
-    # @dummy = DummyTest.new
   end
 
   test 'testing'  do

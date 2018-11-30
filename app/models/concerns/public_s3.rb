@@ -34,6 +34,8 @@ module PublicS3
     #
     # Two additional methods are introduced to encourage the developer to be explicit
     # when uploading/downloading files to and from public S3.
+    #
+    # If the user deletes the attachment it will schedule and ActiveJob to purge those requests
     def self.has_one_public_s3(name, dependent: :purge_later)
       class_eval <<-CODE, __FILE__, __LINE__ + 1
         def #{name}

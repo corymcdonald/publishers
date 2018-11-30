@@ -24,6 +24,7 @@ class Publishers::SiteBannersController < ApplicationController
   end
 
   def fetch
+    binding.pry
     if current_publisher.site_banner.present?
       data = current_publisher.site_banner.read_only_react_property
       data[:backgroundImage] = data[:backgroundUrl]

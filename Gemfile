@@ -175,7 +175,6 @@ end
 group :development, :test do
   gem "pry"
   gem 'pry-stack_explorer', '~> 0.4.9.3'
-  gem 'httplog'
   gem "byebug"
   gem "pry-byebug", require: false
   gem "mocha"
