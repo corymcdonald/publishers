@@ -428,6 +428,9 @@ GEM
       dalli
       msgpack
       redis
+    temping (3.10.0)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
     temple (0.8.0)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
@@ -534,6 +537,7 @@ DEPENDENCIES
   sidekiq-scheduler (~> 2.2.2)
   sinatra (~> 2.0.2)
   slim-rails (~> 3.1)
+  temping
   tzinfo-data
   u2f (~> 1.0)
   vcr

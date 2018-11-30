@@ -159,6 +159,9 @@ group :test do
   # Clean state in-between tests which modify the DB
   gem "database_cleaner"
 
+  # Create a temporary table-backed ActiveRecord model
+  gem 'temping'
+
   # API recording and playback
   gem "vcr"
 
