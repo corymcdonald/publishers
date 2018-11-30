@@ -34,7 +34,6 @@ class PrivateS3Test < ActiveSupport::TestCase
 
     @dummy.public_invoice_url
 
-    binding.pry
 
     # TODO figure out how to get a public thing
     # result = @dummy.invoices

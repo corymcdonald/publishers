@@ -55,6 +55,8 @@ module PublicS3
             blob.content_type = file[:content_type]
             # This ensures that the blob is uploaded to the correct S3 service
             blob.service = public_s3_service
+            # Prevents the AnalyzeJob from running
+            blob.metadata = { analyzed: true }
 
             blob.upload file[:io]
           end
@@ -86,6 +88,7 @@ module PublicS3
         end
 
         def #{name}_purge_later
+          binding.pry
           PublicPurgeJob.perform_later(self, "#{name}")
         end
 
