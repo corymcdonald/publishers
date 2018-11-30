@@ -90,7 +90,6 @@ module PublicS3
         end
 
         def #{name}_purge_later
-          binding.pry
           PublicPurgeJob.perform_later(self, "#{name}")
         end
 
