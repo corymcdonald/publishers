@@ -8,10 +8,10 @@ source "https://rubygems.org"
 gem "activejob-traffic_control"
 
 # Serialize models for JSON APIs
-gem "active_model_serializers", "~> 0.10.0"
+gem "active_model_serializers", "~> 0.10.10"
 
 # ActiveRecord Session store for server side storage of session data
-gem 'activerecord-session_store'
+gem 'activerecord-session_store', '>= 1.1.3'
 
 # Allowing for URI templates, for HTTP clients
 gem 'addressable', '~> 2.6'
@@ -42,16 +42,16 @@ gem "dnsruby", "~> 1.60.0", require: false
 # HTTP library wrapper
 gem "faraday", "~> 0.15.4"
 
-gem "font-awesome-rails", "~> 4.7.0.4"
+gem "font-awesome-rails", "~> 4.7.0.5"
 
 # Make logs less mad verbose
-gem "lograge", "~> 0.4"
+gem "lograge", "~> 0.11", ">= 0.11.2"
 
 # Dependency for rails
 gem "nokogiri"
 
 # Open Graph tag
-gem "meta-tags"
+gem "meta-tags", ">= 2.11.1"
 
 # Image conversion library
 gem 'mini_magick'
@@ -96,13 +96,13 @@ gem "puma", "~> 4.0.1"
 # Make cracking a little bit harder
 gem "rack-attack", "~> 5.0"
 
-gem 'railties', "~> 6.0.0"
+gem 'railties', '~> 6.0.2', '>= 6.0.2.2'
 
-gem "rails", "~> 6.0.0"
-gem 'rails-i18n', '~> 6.0'
+gem "rails", "~> 6.0.2", ">= 6.0.2.2"
+gem 'rails-i18n', '~> 6.0', '>= 6.0.0'
 
 # I love captchas
-gem "recaptcha", "~> 3.3", require: "recaptcha/rails"
+gem "recaptcha", "3.4.0"
 
 # Cache with Redis
 gem 'redis', '~> 4.1.2'
@@ -111,7 +111,7 @@ gem 'redis', '~> 4.1.2'
 gem "rqrcode", "~> 0.10"
 
 # SCSS for stylesheets
-gem "sass-rails", "~> 5.0"
+gem "sass-rails", "~> 5.1", ">= 5.1.0"
 
 # Sendgrid mail service
 gem "sendgrid-ruby"
@@ -128,7 +128,7 @@ gem "sidekiq-scheduler", "~> 2.2.2"
 gem 'sinatra', '~> 2.0.2'
 
 # slim for view templates
-gem "slim-rails", "~> 3.1"
+gem "slim-rails", "~> 3.2", ">= 3.2.0"
 
 # U2F for 2-factor auth
 gem "u2f", "~> 1.0"
@@ -155,13 +155,13 @@ group :development do
   gem 'bullet'
 
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem "web-console"
+  gem "web-console", ">= 4.0.1"
 
   # gem "spring"
   # gem "spring-watcher-listen", "~> 2.0.0"
 
   # i18n-tasks helps you find and manage missing and unused translations.
-  gem "i18n-tasks", "~> 0.9.12"
+  gem "i18n-tasks", "~> 0.9.29"
 end
 
 group :test do
@@ -170,7 +170,7 @@ group :test do
   # API recording and playback
   gem "vcr"
   gem "webmock", "~> 3.0"
-  gem "rails-controller-testing"
+  gem "rails-controller-testing", ">= 1.0.4"
 end
 
 group :development, :test do
@@ -189,11 +189,11 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem 'capybara'
   gem 'minitest'
-  gem 'minitest-rails'
+  gem 'minitest-rails', '>= 6.0.0'
   gem "mocha"
   gem "capybara-selenium"
   gem "chromedriver-helper"
-  gem 'simplecov', require: false, group: :test
+  gem 'simplecov', '>= 0.17.0', require: false, group: :test
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
