@@ -1,0 +1,42 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - '@rails/webpacker > @babel/core > lodash':
+        patched: '2020-04-30T22:12:15.105Z'
+    - '@rails/webpacker > node-sass > lodash':
+        patched: '2020-04-30T22:12:15.105Z'
+    - styled-components > babel-plugin-styled-components > lodash:
+        patched: '2020-04-30T22:12:15.105Z'
+    - '@babel/preset-env > @babel/plugin-transform-modules-umd > @babel/helper-module-transforms > lodash':
+        patched: '2020-04-30T22:12:15.105Z'
+    - styled-components > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2020-04-30T22:12:15.105Z'
+    - '@rails/webpacker > node-sass > sass-graph > lodash':
+        patched: '2020-04-30T22:12:15.105Z'
+    - '@rails/webpacker > optimize-css-assets-webpack-plugin > last-call-webpack-plugin > lodash':
+        patched: '2020-04-30T22:12:15.105Z'
+    - '@rails/webpacker > @babel/preset-env > @babel/plugin-transform-modules-umd > @babel/helper-module-transforms > lodash':
+        patched: '2020-04-30T22:12:15.105Z'
+    - styled-components > babel-plugin-styled-components > @babel/helper-annotate-as-pure > @babel/types > lodash:
+        patched: '2020-04-30T22:12:15.105Z'
+    - '@rails/webpacker > node-sass > gaze > globule > lodash':
+        patched: '2020-04-30T22:12:15.105Z'
+    - babel-preset-react > babel-plugin-transform-react-jsx > babel-helper-builder-react-jsx > babel-types > lodash:
+        patched: '2020-04-30T22:12:15.105Z'
+    - '@rails/webpacker > @babel/preset-env > @babel/plugin-transform-parameters > @babel/helper-call-delegate > @babel/traverse > lodash':
+        patched: '2020-04-30T22:12:15.105Z'
+    - react-select > @emotion/css > babel-plugin-emotion > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2020-04-30T22:12:15.105Z'
+    - '@rails/webpacker > @babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > lodash':
+        patched: '2020-04-30T22:12:15.105Z'
+    - react-select > @emotion/core > @emotion/css > babel-plugin-emotion > @babel/helper-module-imports > @babel/types > lodash:
+        patched: '2020-04-30T22:12:15.105Z'
+    - '@rails/webpacker > @babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/generator > lodash':
+        patched: '2020-04-30T22:12:15.105Z'
+    - '@rails/webpacker > @babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-split-export-declaration > @babel/types > lodash':
+        patched: '2020-04-30T22:12:15.105Z'
+    - '@rails/webpacker > @babel/preset-env > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash':
+        patched: '2020-04-30T22:12:15.105Z'
