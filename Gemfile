@@ -102,7 +102,7 @@ gem "rails", "~> 6.0.0"
 gem 'rails-i18n', '~> 6.0'
 
 # I love captchas
-gem "recaptcha", "~> 3.3", require: "recaptcha/rails"
+gem "recaptcha", "3.4.0"
 
 # Cache with Redis
 gem 'redis', '~> 4.1.2'
@@ -193,7 +193,7 @@ group :development, :test do
   gem "mocha"
   gem "capybara-selenium"
   gem "chromedriver-helper"
-  gem 'simplecov', require: false, group: :test
+  gem 'simplecov', '>= 0.17.0', require: false, group: :test
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
