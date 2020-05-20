@@ -5,13 +5,13 @@ ruby "2.5.7"
 source "https://rubygems.org"
 
 # Rate limit ActiveJob
-gem "activejob-traffic_control"
+gem "activejob-traffic_control", ">= 0.1.3"
 
 # Serialize models for JSON APIs
-gem "active_model_serializers", "~> 0.10.0"
+gem "active_model_serializers", "~> 0.10.10"
 
 # ActiveRecord Session store for server side storage of session data
-gem 'activerecord-session_store'
+gem 'activerecord-session_store', '>= 1.1.3'
 
 # Allowing for URI templates, for HTTP clients
 gem 'addressable', '~> 2.6'
@@ -42,16 +42,16 @@ gem "dnsruby", "~> 1.60.0", require: false
 # HTTP library wrapper
 gem "faraday", "~> 0.15.4"
 
-gem "font-awesome-rails", "~> 4.7.0.4"
+gem "font-awesome-rails", "~> 4.7.0.5"
 
 # Make logs less mad verbose
-gem "lograge", "~> 0.4"
+gem "lograge", "~> 0.11", ">= 0.11.2"
 
 # Dependency for rails
 gem "nokogiri"
 
 # Open Graph tag
-gem "meta-tags"
+gem "meta-tags", ">= 2.11.1"
 
 # Image conversion library
 gem 'mini_magick'
@@ -96,10 +96,10 @@ gem "puma", "~> 4.0.1"
 # Make cracking a little bit harder
 gem "rack-attack", "~> 5.0"
 
-gem 'railties', "~> 6.0.0"
+gem 'railties', '~> 6.0.3', '>= 6.0.3.1'
 
-gem "rails", "~> 6.0.0"
-gem 'rails-i18n', '~> 6.0'
+gem "rails", "~> 6.0.3", ">= 6.0.3.1"
+gem 'rails-i18n', '~> 6.0', '>= 6.0.0'
 
 # I love captchas
 gem "recaptcha", "~> 3.3", require: "recaptcha/rails"
@@ -111,7 +111,7 @@ gem 'redis', '~> 4.1.2'
 gem "rqrcode", "~> 0.10"
 
 # SCSS for stylesheets
-gem "sass-rails", "~> 5.0"
+gem "sass-rails", "~> 5.1", ">= 5.1.0"
 
 # Sendgrid mail service
 gem "sendgrid-ruby"
@@ -128,7 +128,7 @@ gem "sidekiq-scheduler", "~> 2.2.2"
 gem 'sinatra', '~> 2.0.2'
 
 # slim for view templates
-gem "slim-rails", "~> 3.1"
+gem "slim-rails", "~> 3.2", ">= 3.2.0"
 
 # U2F for 2-factor auth
 gem "u2f", "~> 1.0"
@@ -142,7 +142,7 @@ gem 'webpacker', '~> 4.0.7'
 gem "will_paginate"
 
 # YouTube API client
-gem 'yt'
+gem 'yt', '>= 0.32.4'
 
 gem "zeitwerk", '~> 2.1.10'
 gem "zendesk_api"
@@ -152,16 +152,16 @@ group :development do
   gem "binding_of_caller"
   gem 'listen', '~> 3.2'
 
-  gem 'bullet'
+  gem 'bullet', '>= 6.0.2'
 
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem "web-console"
+  gem "web-console", ">= 4.0.1"
 
   # gem "spring"
   # gem "spring-watcher-listen", "~> 2.0.0"
 
   # i18n-tasks helps you find and manage missing and unused translations.
-  gem "i18n-tasks", "~> 0.9.12"
+  gem "i18n-tasks", "~> 0.9.29"
 end
 
 group :test do
@@ -170,12 +170,12 @@ group :test do
   # API recording and playback
   gem "vcr"
   gem "webmock", "~> 3.0"
-  gem "rails-controller-testing"
+  gem "rails-controller-testing", ">= 1.0.4"
 end
 
 group :development, :test do
   # Create a temporary table-backed ActiveRecord model
-  gem 'temping'
+  gem 'temping', '>= 3.10.0'
   gem 'rubocop-airbnb'
 
   gem "pry"
@@ -189,7 +189,7 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem 'capybara'
   gem 'minitest'
-  gem 'minitest-rails'
+  gem 'minitest-rails', '>= 6.0.0'
   gem "mocha"
   gem "capybara-selenium"
   gem "chromedriver-helper"
