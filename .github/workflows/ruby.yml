@@ -29,14 +29,22 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-     
+
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+        path: vendor/bundle
+        key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gems-
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7.1
-      - name: Install dependencies
-        run: bundle install
+      - name: Bundle install
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
       - name: Read Node.js version to install from `.nvmrc`
         run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
         id: nvm
@@ -56,11 +64,11 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Prepare database
         run: RAILS_ENV=test bundle exec rake db:prepare
-        env: 
+        env:
           DATABASE_URL_TEST: postgres://postgres:postgres@localhost:5432/brave_publishers_test
       - name: Run tests
         run: RAILS_ENV=test bundle exec rails test
-        env: 
+        env:
           DATABASE_URL_TEST: postgres://postgres:postgres@localhost:5432/brave_publishers_test
       - name: Brakeman
         run: bundle exec brakeman
